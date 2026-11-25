@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>《完璧歸趙》歷史人物對話</title>
+  <style>
+    :root {
+      --paper: #F6F1E7;
+      --card: #FFFcf7;
+      --ink: #1E1A16;
+      --muted: #5C5348;
+      --line: #D9CFBE;
+      --lin: #1B4D5C;
+      --lin-soft: #E6F1F3;
+      --qin: #7A3A2E;
+      --qin-soft: #F6EAE6;
+      --ok: #215C3A;
+      --warn: #8A5A10;
+      --btn: #1B4D5C;
+      --btn-hover: #143944;
+      --shadow: 0 1px 3px rgba(40, 30, 16, 0.08);
+      --radius: 14px;
+      --font: "Microsoft JhengHei", "PingFang HK", "PingFang TC", "Noto Sans TC", "Source Han Sans TC", "Heiti TC", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 20px;
+      line-height: 1.55;
+      min-height: 100vh;
+    }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 16px 16px 32px; }
+    header.app-head {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+    header.app-head h1 {
+      margin: 0 0 4px;
+      font-size: 28px;
+      letter-spacing: 0.04em;
+    }
+    header.app-head p.sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+    .head-row { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; flex-wrap: wrap; }
+    button, .chip {
+      font-family: inherit;
+      font-size: 18px;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      line-height: 1.3;
+    }
+    button:focus-visible, .chip:focus-visible, textarea:focus-visible, input:focus-visible {
+      outline: 3px solid #E0A43A;
+      outline-offset: 2px;
+    }
+    .btn {
+      background: var(--btn);
+      color: #fff;
+      padding: 12px 20px;
+      min-height: 52px;
+      font-weight: 700;
+    }
+    .btn:hover { background: var(--btn-hover); }
+    .btn:disabled { background: #9AA7AB; cursor: not-allowed; }
+    .btn-ghost {
+      background: #fff;
+      color: var(--ink);
+      border-color: var(--line);
+      padding: 10px 16px;
+      min-height: 48px;
+      font-weight: 700;
+    }
+    .btn-ghost:hover { background: #F3EEE4; }
+    .btn-qin { background: var(--qin); }
+    .btn-qin:hover { background: #612F25; }
+    .btn-wide { width: 100%; }
+    .help {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px 16px 4px;
+      margin-bottom: 16px;
+    }
+    .help summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 18px;
+      padding: 6px 0 10px;
+    }
+    .help ol { margin: 0 0 12px; padding-left: 1.4em; }
+    .help li { margin: 0 0 6px; font-size: 17px; }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+    .pick h2, .chat-head h2, .verify h2 {
+      margin: 0 0 12px;
+      font-size: 24px;
+    }
+    .pick-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 640px) {
+      .pick-grid { grid-template-columns: 1fr; }
+      header.app-head h1 { font-size: 24px; }
+      body { font-size: 18px; }
+    }
+    .pick-card {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: #fff;
+      border: 3px solid var(--line);
+      border-radius: 16px;
+      padding: 20px 18px;
+      min-height: 140px;
+    }
+    .pick-card:hover { transform: translateY(-1px); }
+    .pick-card.lin { border-color: var(--lin); background: var(--lin-soft); }
+    .pick-card.qin { border-color: var(--qin); background: var(--qin-soft); }
+    .pick-card .who { font-size: 28px; font-weight: 800; margin-bottom: 6px; }
+    .pick-card.lin .who { color: var(--lin); }
+    .pick-card.qin .who { color: var(--qin); }
+    .pick-card .desc { color: var(--muted); font-size: 16px; }
+    .chat-head {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 10px; flex-wrap: wrap; margin-bottom: 12px;
+    }
+    .who-tag {
+      display: inline-block;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 16px;
+    }
+    .who-tag.lin { background: var(--lin-soft); color: var(--lin); }
+    .who-tag.qin { background: var(--qin-soft); color: var(--qin); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+    .chip {
+      background: #fff;
+      border: 2px solid var(--line);
+      padding: 10px 14px;
+      text-align: left;
+      color: var(--ink);
+      max-width: 100%;
+    }
+    .chip:hover { border-color: var(--lin); background: var(--lin-soft); }
+    .body-qin .chip:hover { border-color: var(--qin); background: var(--qin-soft); }
+    .log {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      min-height: 260px;
+      max-height: 46vh;
+      overflow-y: auto;
+      margin-bottom: 12px;
+    }
+    .bubble { margin: 0 0 12px; max-width: 92%; }
+    .bubble.user { margin-left: auto; }
+    .bubble .meta { font-size: 14px; color: var(--muted); margin-bottom: 4px; }
+    .bubble .txt {
+      padding: 10px 14px;
+      border-radius: 12px;
+      white-space: pre-wrap;
+    }
+    .bubble.user .txt { background: #EEE7D8; }
+    .bubble.lin .txt { background: var(--lin-soft); border: 1px solid #C5DDE2; }
+    .bubble.qin .txt { background: var(--qin-soft); border: 1px solid #E7C8C0; }
+    .composer { display: flex; gap: 8px; align-items: flex-end; margin-bottom: 12px; }
+    .composer textarea {
+      flex: 1;
+      font-family: inherit;
+      font-size: 18px;
+      padding: 12px;
+      border-radius: 12px;
+      border: 2px solid var(--line);
+      min-height: 56px;
+      resize: vertical;
+      background: #fff;
+    }
+    .hint { font-size: 16px; color: var(--muted); margin: 0 0 10px; }
+    .hint.strong { color: var(--qin); font-weight: 700; }
+    .row-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .verify-block {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+    .qa { margin: 0 0 10px; }
+    .qa .q { font-weight: 700; }
+    .qa .a { margin-top: 6px; background: #F7F3EB; padding: 10px 12px; border-radius: 8px; }
+    fieldset.choice {
+      border: 0;
+      margin: 0 0 10px;
+      padding: 0;
+    }
+    fieldset.choice legend { font-weight: 700; font-size: 18px; margin-bottom: 6px; }
+    .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+    .opts label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #F6F1E7;
+      border: 2px solid var(--line);
+      border-radius: 10px;
+      padding: 8px 12px;
+      min-height: 46px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .opts input { width: 18px; height: 18px; accent-color: var(--lin); }
+    textarea.note {
+      width: 100%;
+      font-family: inherit;
+      font-size: 18px;
+      padding: 10px 12px;
+      border: 2px solid var(--line);
+      border-radius: 10px;
+      min-height: 84px;
+      margin-top: 6px;
+    }
+    .hidden { display: none !important; }
+    footer.fine {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+    @media print {
+      body { background: #fff; font-size: 14px; }
+      .no-print, .help, .composer, .chips, .row-actions, header.app-head button { display: none !important; }
+      .log, .panel, .verify-block { box-shadow: none; }
+      .wrap { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="app-head">
+      <div class="head-row">
+        <div>
+          <h1>《完璧歸趙》歷史人物對話</h1>
+          <p class="sub">六年級中文　從言語、行為及心理認識人物　無需上網</p>
+        </div>
+        <button type="button" class="btn-ghost no-print" id="btn-help" aria-expanded="true">使用說明</button>
+      </div>
+    </header>
+
+    <details class="help no-print" id="help-box" open>
+      <summary>課堂使用說明（約 4 分鐘）</summary>
+      <ol>
+        <li>每組共用一部平板或電腦，用瀏覽器開啟本檔案即可，無須上網，也無須登入。</li>
+        <li>請先在工作紙上寫好初步推論，再開始對話。</li>
+        <li>選一位人物（藺相如或秦王），點建議問題或自己輸入，問 1 至 2 題（約 2 分鐘）。</li>
+        <li>按「進入檢證」，判斷人物的說話是否符合課文，標示證據屬於言語、行為或心理，並寫下小組結論（約 1.5 分鐘）。</li>
+        <li>人物只根據劇本第一、二幕作答。若回覆不合理，或課文沒有這些情節，要用課文證據指出來。</li>
+      </ol>
+    </details>
+
+    <section class="panel pick" id="view-pick">
+      <h2>請選擇要對話的人物</h2>
+      <p class="hint">選好後，人物會用第一身跟你們說話。記住：他的話仍要回到課文去核對。</p>
+      <div class="pick-grid">
+        <button type="button" class="pick-card lin" data-char="lin" id="pick-lin">
+          <div class="who">藺相如</div>
+          <div class="desc">趙國使者。沉着、義正詞嚴、有禮而堅定。同學可問他為甚麼作勢撞柱、先把璧送走是否不守信用。</div>
+        </button>
+        <button type="button" class="pick-card qin" data-char="qin" id="pick-qin">
+          <div class="who">秦王</div>
+          <div class="desc">秦國君王。起初得意，容易發怒，後來無可奈何。同學可問他為甚麼把玩和氏璧、後來為甚麼又放了藺相如。</div>
+        </button>
+      </div>
+    </section>
+
+    <section class="panel hidden" id="view-chat">
+      <div class="chat-head">
+        <h2>正在與 <span id="chat-who" class="who-tag lin">藺相如</span> 對話</h2>
+        <button type="button" class="btn-ghost" id="btn-switch">更換人物</button>
+      </div>
+      <p class="hint" id="suggest-label">建議問題（可直接點選）：</p>
+      <div class="chips" id="chips"></div>
+      <div class="log" id="log" aria-live="polite"></div>
+      <p class="hint hidden" id="after-two">已經問了兩題，可以按「進入檢證」，用課文核對剛才的說話。若還想再問一題，也可以。</p>
+      <form class="composer" id="ask-form">
+        <label class="hidden" for="q-input">輸入問題</label>
+        <textarea id="q-input" rows="2" placeholder="也可自己輸入問題，例如：你當時心裏在想甚麼？" maxlength="120"></textarea>
+        <button type="submit" class="btn" id="btn-ask">提問</button>
+      </form>
+      <div class="row-actions">
+        <button type="button" class="btn" id="btn-verify">進入檢證</button>
+        <button type="button" class="btn-ghost" id="btn-reset-chat">清空對話</button>
+      </div>
+    </section>
+
+    <section class="panel verify hidden" id="view-verify">
+      <h2>用課文證據檢證人物的說話</h2>
+      <p class="hint">先讀人物剛才的回覆，再判斷是否符合第一、二幕的對白和舞台指示。這一步比「聽他怎麼說」更重要。</p>
+      <div id="verify-list"></div>
+      <div class="verify-block">
+        <label for="group-concl"><strong>小組結論</strong>（藺相如或秦王是怎樣的人？請結合言語、行為、心理，各舉一點證據）</label>
+        <textarea class="note" id="group-concl" placeholder="例如：我們認為藺相如勇敢而機智，因為他……（請寫出課文證據）"></textarea>
+      </div>
+      <div class="row-actions no-print">
+        <button type="button" class="btn" id="btn-print">列印／查看檢證結果</button>
+        <button type="button" class="btn-ghost" id="btn-back">返回對話</button>
+        <button type="button" class="btn-ghost" id="btn-home">重新開始</button>
+      </div>
+    </section>
+
+    <footer class="fine">本程式只根據課文劇本《完璧歸趙》第一幕、第二幕作答，供課堂檢證使用，並非真正的歷史人物或上網人工智能。</footer>
+  </div>
+  <script>
+
+(function (global) {
+  "use strict";
+
+  var FORBIDDEN = ["藉相如", "蘭相如", "妃嬡", "鞭躬", "手捩", "晶籩", "自憚", "完壁歸趙"];
+
+  var SUGGEST = {
+    lin: [
+      "你為甚麼要作勢把璧玉撞向柱子？",
+      "你說「璧在人在，璧亡人亡」是甚麼意思？",
+      "你先把和氏璧送走，算不算不守信用？",
+      "為甚麼不立刻把璧獻給秦王？",
+      "你為甚麼要求秦王齋戒五天？",
+      "侍衛捉住你、秦王要斬你時，你心裏在想甚麼？"
+    ],
+    qin: [
+      "你為甚麼與妃嬪把玩和氏璧，卻沒有劃城？",
+      "你後來為甚麼又放了藺相如？",
+      "你為甚麼下令要斬藺相如？",
+      "藺相如作勢要撞毀和氏璧時，你為甚麼着急？",
+      "你為甚麼答應齋戒五天？",
+      "你認為藺相如是怎樣的人？"
+    ]
+  };
+
+  var OPENING = {
+    lin: "同學好。我是藺相如。趙王得到和氏璧後，秦王送信來說，願拿十五座城池交換。我受命出使秦國，答應趙王：如果秦王食言，我定必設法把和氏璧送回趙國。你們想問我這段經歷的哪一件事？",
+    qin: "哈哈！我是秦王。趙王把和氏璧送來了，果然晶瑩潤亮、雕琢精巧，本王開懷大笑。你們想問本王甚麼？"
+  };
+
+  var OUT_OF_SCOPE = {
+    lin: "這件事不在我這兩段經歷裏。同學在課文第一幕、第二幕找不到的情節，我也不便亂說。請回到劇本，找出對白和舞台指示，再來問我這裏發生過的事吧。",
+    qin: "這件事本王在這兩段經歷裏並沒有經歷過。課文第一幕、第二幕沒有寫的，本王也不便亂講。請同學回到劇本找證據，再問章台或大殿上發生過的事吧。"
+  };
+
+  var VAGUE = {
+    lin: "你想問得更具體一點嗎？例如我為甚麼作勢把璧玉撞向柱子，或我先把璧送走算不算不守信用。也可以先看看上面的建議問題。",
+    qin: "你想問得更清楚一點嗎？例如本王為甚麼和妃嬪把玩和氏璧，後來又為甚麼放了藺相如。也可以先點選上面的建議問題。"
+  };
+
+  function reply(id, text, evidence) {
+    return { id: id, text: text, evidence: evidence || [] };
+  }
+
+  var INTENTS = [
+    /* ===== 藺相如 ===== */
+    {
+      char: "lin", id: "lin-smash",
+      rules: [
+        { type: "phrase", v: "撞向柱", w: 8 },
+        { type: "phrase", v: "撞向柱子", w: 8 },
+        { type: "all", v: ["作勢", "撞"], w: 8 },
+        { type: "all", v: ["撞", "柱"], w: 7 },
+        { type: "phrase", v: "同歸於盡", w: 8 },
+        { type: "all", v: ["毀", "璧"], w: 5 },
+        { type: "all", v: ["打碎", "璧"], w: 5 }
+      ],
+      ans: reply("lin-smash",
+        "那時秦王拍案大怒，要左右拿住我。我舉起璧玉，作勢要撞向柱子，厲聲地說：「大王，璧在人在，璧亡人亡！你要是硬逼我，我寧願和璧玉同歸於盡！」我不是一時衝動，而是要保住這塊國寶。秦王只顧和妃嬪把玩和氏璧，並無換城之意；我若落入他手上，璧也就保不住了。我這樣做，是要讓他知道：硬搶是沒有用的。",
+        ["言語", "行為", "心理"])
+    },
+    {
+      char: "lin", id: "lin-saying",
+      rules: [
+        { type: "phrase", v: "璧在人在", w: 10 },
+        { type: "phrase", v: "璧亡人亡", w: 10 },
+        { type: "phrase", v: "同歸於盡", w: 4 }
+      ],
+      ans: reply("lin-saying",
+        "「璧在人在，璧亡人亡」是我當着秦王厲聲說出來的話，意思是：和氏璧還在，我人也在；若璧玉沒了，我也不惜犧牲性命。我接着說，他要是硬逼我，我寧願和璧玉同歸於盡。這句話既表明我保護國寶的決心，也逼使秦王不敢立刻搶璧。後來他萬分着急，連說「不！不！千萬不要衝動」，還叫人拿地圖來劃城。",
+        ["言語", "心理"])
+    },
+    {
+      char: "lin", id: "lin-trust",
+      rules: [
+        { type: "phrase", v: "不守信用", w: 9 },
+        { type: "phrase", v: "算不算欺騙", w: 7 },
+        { type: "all", v: ["送走", "信用"], w: 8 },
+        { type: "all", v: ["先把", "守信"], w: 7 },
+        { type: "phrase", v: "悔約", w: 5 },
+        { type: "phrase", v: "食言", w: 5 },
+        { type: "phrase", v: "欺騙", w: 4 }
+      ],
+      exclude: ["為甚麼不立刻", "為甚麼不馬上", "為甚麼不獻"],
+      ans: reply("lin-trust",
+        "同學問得好。有人會覺得：我先答應獻璧，後來卻把和氏璧送走，是不守信用。可是請先分清，是誰先食言。秦王派人送信，說願拿十五座城池來交換；我當面看見他只顧和妃嬪把玩璧玉，並無換城之意，這才先取回璧玉。五天後我讓隨從抄小路把璧送回趙國，是因為我審時度勢：秦強趙弱，若他拿了寶玉卻不交城，我便有負趙王所託。我當着他的面說過：「兩國相交，應當以誠信為本，不應悔約食言。」我也表明：要是大王果真交出城池，我保證馬上親自把和氏璧送上。所以我不是為了欺騙而欺騙，而是要完成使命、保住國寶。",
+        ["言語", "行為", "心理"])
+    },
+    {
+      char: "lin", id: "lin-not-give",
+      rules: [
+        { type: "phrase", v: "不立刻", w: 7 },
+        { type: "phrase", v: "不馬上", w: 7 },
+        { type: "all", v: ["為甚麼不", "獻"], w: 7 },
+        { type: "all", v: ["為甚麼不", "給"], w: 5 },
+        { type: "phrase", v: "不把璧獻", w: 7 },
+        { type: "phrase", v: "先把和氏璧送走", w: 6 },
+        { type: "all", v: ["為甚麼", "送走"], w: 6 },
+        { type: "all", v: ["為甚麼", "抄小路"], w: 8 }
+      ],
+      exclude: ["算不算", "不守信用"],
+      ans: reply("lin-not-give",
+        "我不是不肯交換，而是看見秦王並無換城的誠意。第一幕裏，他在專供玩樂的章台，手捧璧玉，開懷大笑，只顧和妃嬪把玩，並沒有劃出十五座城池。我便上前接過和氏璧，迅速退到圓柱旁，先把璧取回。後來他答應齋戒五天、舉行隆重儀式，我審時度勢，讓隨從抄小路把璧送回趙國。若他拿了寶玉卻不交城，我豈不是有負趙王所託？我對他說過：要是他果真交出城池，我保證馬上親自把和氏璧送上。",
+        ["言語", "行為"])
+    },
+    {
+      char: "lin", id: "lin-fast",
+      rules: [
+        { type: "phrase", v: "齋戒", w: 9 },
+        { type: "phrase", v: "五天", w: 5 },
+        { type: "phrase", v: "交換儀式", w: 8 },
+        { type: "phrase", v: "隆重", w: 4 },
+        { type: "phrase", v: "不合禮儀", w: 6 },
+        { type: "phrase", v: "章台", w: 5 }
+      ],
+      exclude: ["你為甚麼在章台", "把玩"],
+      ans: reply("lin-fast",
+        "和氏璧是趙國的國寶。當日趙王齋戒五天，在殿堂上行大禮，親自恭送它出國。可是秦王竟在專供玩樂的章台，草草地說要交換，我以為這既不嚴肅，也不合禮儀。所以我嚴肅地請他也齋戒五天，在大殿上舉行隆重的交換儀式。這樣做，既是為了維護禮儀，也為我安排隨從、把璧安全送回趙國爭取了時間。秦王當時無可奈何，說：「好！就依你吧！」",
+        ["言語", "心理"])
+    },
+    {
+      char: "lin", id: "lin-flaw",
+      rules: [
+        { type: "phrase", v: "瑕疵", w: 9 },
+        { type: "all", v: ["取回", "璧"], w: 6 },
+        { type: "phrase", v: "圓柱", w: 7 },
+        { type: "phrase", v: "退到", w: 6 },
+        { type: "all", v: ["接過", "璧"], w: 6 },
+        { type: "phrase", v: "指給", w: 5 }
+      ],
+      ans: reply("lin-flaw",
+        "秦王手捧璧玉，開懷大笑，和妃嬪傳看。我拱手鞠躬後問他：剛才欣賞時，可發現上面的瑕疵？他詫異地說不可能，還叫我過去指給他看。我上前接過和氏璧，迅速地退到圓柱旁，這才義正詞嚴地說明：他只顧把玩，並無換城之意，所以我先取回璧玉了。提起瑕疵，是為了能把璧從他手上接回來，不是真的要指出毛病。",
+        ["言語", "行為", "心理"])
+    },
+    {
+      char: "lin", id: "lin-assess",
+      rules: [
+        { type: "phrase", v: "審時度勢", w: 10 },
+        { type: "phrase", v: "秦強趙弱", w: 8 },
+        { type: "all", v: ["勢力", "強"], w: 6 },
+        { type: "phrase", v: "掌握在", w: 5 }
+      ],
+      ans: reply("lin-assess",
+        "第二幕裏，秦王怒火中燒，責我欺騙。我不慌不忙地說明：我是審時度勢才這樣做的。論兩國勢力，秦國強而趙國弱；我的性命和璧玉本來都掌握在他手上。假如他取得寶玉之後，不履行承諾交出城池，我便有負趙王所託。所以我不得不先把璧玉安全送回趙國。這不是戲弄他，而是看清形勢，再作決定。",
+        ["言語", "心理"])
+    },
+    {
+      char: "lin", id: "lin-loyal",
+      rules: [
+        { type: "phrase", v: "忠於", w: 8 },
+        { type: "phrase", v: "效忠", w: 8 },
+        { type: "phrase", v: "使命", w: 7 },
+        { type: "phrase", v: "趙王信任", w: 8 },
+        { type: "phrase", v: "有負趙王", w: 8 },
+        { type: "phrase", v: "所託", w: 6 }
+      ],
+      ans: reply("lin-loyal",
+        "我得到趙王信任，當然要效忠趙王。他派我出使時，我已答應：如果秦王食言，定必設法把和氏璧送回趙國。後來和氏璧安全送返，我在大殿上鎮定自若地說：「使命已經完成，臣是生是死，也無所謂了。」我把完成託付看得比自己的安危更重。同時我也說過，要是秦王果真交出城池，我保證馬上親自把和氏璧送上。",
+        ["言語", "心理"])
+    },
+    {
+      char: "lin", id: "lin-feel",
+      rules: [
+        { type: "phrase", v: "心裏", w: 6 },
+        { type: "phrase", v: "心情", w: 6 },
+        { type: "phrase", v: "害怕", w: 6 },
+        { type: "phrase", v: "恐懼", w: 5 },
+        { type: "phrase", v: "鎮定自若", w: 9 },
+        { type: "phrase", v: "不慌不忙", w: 8 },
+        { type: "phrase", v: "義正詞嚴", w: 8 },
+        { type: "phrase", v: "心理", w: 5 },
+        { type: "all", v: ["要斬", "想"], w: 7 },
+        { type: "phrase", v: "捉住你", w: 6 },
+        { type: "phrase", v: "被捉", w: 6 }
+      ],
+      ans: reply("lin-feel",
+        "劇本用舞台指示寫出我當時的態度。第一幕取回璧玉時，我是「義正詞嚴」的；請秦王齋戒時，我「嚴肅地」說明禮儀。第二幕他怒火中燒，我卻「不慌不忙」地講誠信、講形勢。後來侍衛上前捉住我，他喝令把我拖下去斬，我仍然「鎮定自若」：和氏璧既已送返，使命已經完成，生死也就無所謂了。我還請他「深思熟慮」——不是我不害怕，而是我必須沉着，才能把道理說完。",
+        ["心理", "言語"])
+    },
+    {
+      char: "lin", id: "lin-death",
+      rules: [
+        { type: "phrase", v: "斬", w: 6 },
+        { type: "phrase", v: "深思熟慮", w: 7 },
+        { type: "phrase", v: "生死", w: 6 },
+        { type: "phrase", v: "不怕死", w: 6 },
+        { type: "phrase", v: "拖下去", w: 6 }
+      ],
+      ans: reply("lin-death",
+        "秦王怒氣未消，說我一派胡言、不知死活，還喝令左右把我拖下去斬。侍衛上前捉住我時，我鎮定自若地說：和氏璧已安全送返趙國，使命已經完成，我是生是死，也無所謂了。至於如何處置我，還請大王深思熟慮。後來他無可奈何，說殺了我不僅得不到和氏璧，反而會損害兩國邦交，便放了我。我拱手向他鞠躬，謝他不殺之恩。",
+        ["言語", "行為", "心理"])
+    },
+    {
+      char: "lin", id: "lin-release",
+      rules: [
+        { type: "phrase", v: "放了你", w: 7 },
+        { type: "phrase", v: "放了藺相如", w: 5 },
+        { type: "phrase", v: "不殺", w: 6 },
+        { type: "phrase", v: "鞠躬", w: 7 },
+        { type: "phrase", v: "智勇雙全", w: 5 }
+      ],
+      ans: reply("lin-release",
+        "秦王最後無可奈何地說：我果然智勇雙全、膽識過人；殺了我，不僅得不到和氏璧，反而會損害兩國的邦交。於是他叫人放了我。我拱手向他鞠躬，謝他不殺之恩。這是第二幕結尾的事。同學若要分析他的性格，也可以看看：他起初衝動易怒，最後卻也能審時度勢。",
+        ["言語", "行為"])
+    },
+    {
+      char: "lin", id: "lin-sincerity",
+      rules: [
+        { type: "phrase", v: "以誠信為本", w: 9 },
+        { type: "phrase", v: "兩國相交", w: 8 },
+        { type: "phrase", v: "誠信", w: 6 },
+        { type: "all", v: ["自恃", "盟約"], w: 7 }
+      ],
+      ans: reply("lin-sincerity",
+        "第二幕裏，我對秦王不慌不忙地說：「兩國相交，應當以誠信為本，不應悔約食言。」我也指出，貴國歷代國君自恃國勢強盛，總不信守盟約。他怒目圓睜，哼了一聲，說現在悔約、不守信用的是我、是趙國。我並沒有避開這句質問，而是把審時度勢的道理說清楚，並答應：只要他果真交城，我立刻親自送上和氏璧。",
+        ["言語", "心理"])
+    },
+    {
+      char: "lin", id: "lin-mission-go",
+      rules: [
+        { type: "phrase", v: "十五座城", w: 7 },
+        { type: "phrase", v: "出使", w: 6 },
+        { type: "phrase", v: "為甚麼來", w: 6 },
+        { type: "phrase", v: "受命", w: 5 },
+        { type: "all", v: ["趙王", "派"], w: 5 }
+      ],
+      exclude: ["齋戒", "撞", "送走"],
+      ans: reply("lin-mission-go",
+        "趙王得到和氏璧，秦王送信說想用十五座城池交換。我受命出使秦國，並答應趙王：如果秦王食言，定必設法把和氏璧送回趙國。到了章台，我看見他只顧和妃嬪把玩璧玉，並無換城之意，便先取回璧玉，後來又讓隨從把璧送回趙國。這正是為了守住對趙王的承諾。",
+        ["言語", "行為"])
+    },
+    {
+      char: "lin", id: "lin-who",
+      rules: [
+        { type: "phrase", v: "你是誰", w: 8 },
+        { type: "phrase", v: "你叫甚麼", w: 8 },
+        { type: "phrase", v: "自我介紹", w: 7 },
+        { type: "phrase", v: "你是甚麼人", w: 7 }
+      ],
+      ans: reply("lin-who",
+        "我是藺相如，趙王派來的使者。我的任務，是帶着和氏璧到秦國，交換十五座城池；若秦王食言，便要設法把璧送回趙國。課文第一幕寫章台相會，第二幕寫五天後在大殿上的事。同學可以問我這兩幕裏的言語、行為和心情。",
+        ["言語"])
+    },
+    {
+      char: "lin", id: "lin-character",
+      rules: [
+        { type: "phrase", v: "怎樣的人", w: 7 },
+        { type: "phrase", v: "甚麼性格", w: 7 },
+        { type: "phrase", v: "你的性格", w: 7 },
+        { type: "phrase", v: "勇敢", w: 3 },
+        { type: "phrase", v: "機智", w: 3 }
+      ],
+      exclude: ["秦王是怎樣", "你認為藺相如"],
+      ans: reply("lin-character",
+        "性格要由課文證據來說，不宜由我自己誇讚。同學可以從三方面看：言語上，我義正詞嚴地指出他無換城之意，又說「璧在人在，璧亡人亡」，還講誠信、講審時度勢；行為上，我迅速取回璧玉、作勢撞柱、讓隨從抄小路送走和氏璧；心理上，舞台指示寫我「義正詞嚴」「不慌不忙」「鎮定自若」。請你們先舉證據，再歸納我是怎樣的人。",
+        ["言語", "行為", "心理"])
+    },
+    {
+      char: "lin", id: "lin-about-qin",
+      rules: [
+        { type: "all", v: ["秦王", "怎樣"], w: 7 },
+        { type: "all", v: ["秦王", "性格"], w: 7 },
+        { type: "all", v: ["秦王", "把玩"], w: 6 },
+        { type: "phrase", v: "他為甚麼放", w: 6 }
+      ],
+      ans: reply("lin-about-qin",
+        "秦王的表現，也寫在劇本裏。第一幕他手捧璧玉，開懷大笑，與妃嬪把玩，並無換城之意；我作勢撞柱時，他萬分着急，後來又無可奈何地答應齋戒。第二幕他先開心要我獻璧，聽我把璧送走後便怒火中燒，甚至喝令把我拖下去斬；最後卻說我智勇雙全，擔心損害邦交，便放了我。同學可以對比他的言語、行為和心理，看看他有沒有誠意、是否容易衝動。",
+        ["言語", "行為", "心理"])
+    },
+    {
+      char: "lin", id: "lin-wrong-play",
+      rules: [
+        { type: "all", v: ["妃嬪", "把玩"], w: 6 },
+        { type: "phrase", v: "你為甚麼與妃嬪", w: 9 },
+        { type: "phrase", v: "你為甚麼和妃嬪", w: 9 }
+      ],
+      ans: reply("lin-wrong-play",
+        "和妃嬪把玩和氏璧的，是秦王，不是我。第一幕幕啟時，他正與妃嬪飲酒作樂，手捧璧玉開懷大笑，請美人開開眼界。我看見他只顧把玩、並無換城之意，才先取回璧玉。請同學把這條問題改問秦王，或回到課文核對是誰在做這件事。",
+        ["行為"])
+    },
+
+    /* ===== 秦王 ===== */
+    {
+      char: "qin", id: "qin-play",
+      rules: [
+        { type: "phrase", v: "把玩", w: 8 },
+        { type: "phrase", v: "妃嬪", w: 6 },
+        { type: "phrase", v: "劃城", w: 7 },
+        { type: "phrase", v: "沒有劃", w: 8 },
+        { type: "phrase", v: "開懷大笑", w: 7 },
+        { type: "phrase", v: "手捧", w: 6 },
+        { type: "phrase", v: "十五座城", w: 5 },
+        { type: "all", v: ["為甚麼不", "城"], w: 6 }
+      ],
+      ans: reply("qin-play",
+        "那時本王在章台與妃嬪飲酒作樂。侍衛呈上錦盒，本王取出和氏璧，手捧璧玉，開懷大笑，還請美人來開開眼界。妃嬪傳看以後，異口同聲稱賀。本王的確只顧欣賞這塊晶瑩潤亮的寶玉，並沒有立刻拿出十五座城池來交換。藺相如因此義正詞嚴地說，本王並無換城之意，便先取回了璧玉。這一段，正寫出本王當時得意，卻缺少交換的誠意。",
+        ["言語", "行為", "心理"])
+    },
+    {
+      char: "qin", id: "qin-release",
+      rules: [
+        { type: "phrase", v: "放了", w: 8 },
+        { type: "phrase", v: "為甚麼又放", w: 10 },
+        { type: "phrase", v: "不殺", w: 6 },
+        { type: "phrase", v: "損害", w: 5 },
+        { type: "phrase", v: "邦交", w: 6 }
+      ],
+      ans: reply("qin-release",
+        "本王當時怒氣未消，可是再想一想：殺了他，不僅得不到和氏璧，反而會損害兩國的邦交。璧玉既已送回趙國，再殺害使者，也沒有好處。本王無可奈何地說：他果然智勇雙全、膽識過人。於是本王說了「算了吧！放了他！」侍衛這才放開他。這不是本王一開始就寬大，而是到了最後，才審時度勢，作出這個決定。",
+        ["言語", "心理"])
+    },
+    {
+      char: "qin", id: "qin-kill",
+      rules: [
+        { type: "phrase", v: "斬", w: 8 },
+        { type: "phrase", v: "拖下去", w: 7 },
+        { type: "phrase", v: "不知死活", w: 7 },
+        { type: "phrase", v: "一派胡言", w: 6 },
+        { type: "all", v: ["為甚麼", "殺"], w: 6 }
+      ],
+      exclude: ["為甚麼又放", "後來為甚麼"],
+      ans: reply("qin-kill",
+        "第二幕裏，藺相如說已讓隨從把和氏璧送回趙國。本王頓時怒火中燒，站起來高聲責罵他竟敢欺騙本王。後來他又說，只要本王交城，他便親自送上和氏璧。本王當時覺得這是一派胡言，便喝令：「來人哪！把他拖下去，斬！」侍衛上前捉住了他。本王那時確實又怒又急，說話也很衝動。後來再想邦交和和氏璧，才改變了主意。",
+        ["言語", "行為", "心理"])
+    },
+    {
+      char: "qin", id: "qin-panic",
+      rules: [
+        { type: "phrase", v: "着急", w: 8 },
+        { type: "phrase", v: "千萬不要衝動", w: 9 },
+        { type: "phrase", v: "撞毀", w: 6 },
+        { type: "all", v: ["作勢", "你為甚麼"], w: 6 },
+        { type: "phrase", v: "一時大意", w: 7 },
+        { type: "phrase", v: "拿地圖", w: 6 }
+      ],
+      ans: reply("qin-panic",
+        "藺相如舉起璧玉，作勢要撞向柱子，厲聲說「璧在人在，璧亡人亡」。本王當時萬分着急，連聲說：「不！不！千萬不要衝動，是本王一時大意了。」還叫左右快去拿地圖來劃城。本王先前拍案大怒，要拿住他；一看他真的可能和璧玉同歸於盡，便立刻慌了。同學可以對比這兩種態度，想想本王到底是不是真的那麼強硬。",
+        ["言語", "心理"])
+    },
+    {
+      char: "qin", id: "qin-fast",
+      rules: [
+        { type: "phrase", v: "齋戒", w: 9 },
+        { type: "phrase", v: "五天", w: 5 },
+        { type: "phrase", v: "依你", w: 6 },
+        { type: "phrase", v: "交換儀式", w: 6 }
+      ],
+      ans: reply("qin-fast",
+        "藺相如嚴肅地說，趙王曾齋戒五天、行大禮恭送和氏璧出國，本王卻在專供玩樂的章台草草地說交換，既不嚴肅，也不合禮儀。他要本王也齋戒五天，在大殿上舉行隆重的交換儀式。本王當時無可奈何，只能說：「好！就依你吧！」並吩咐好好招呼他到賓館休息。五天後本王依他的要求行了齋戒之禮，在大殿上等他獻璧，沒想到璧已經被送走了。",
+        ["言語", "心理"])
+    },
+    {
+      char: "qin", id: "qin-blame",
+      rules: [
+        { type: "phrase", v: "哼", w: 6 },
+        { type: "all", v: ["不守信用", "是你"], w: 9 },
+        { type: "all", v: ["不守信用", "趙國"], w: 9 },
+        { type: "phrase", v: "是趙國", w: 7 },
+        { type: "phrase", v: "怒目", w: 6 },
+        { type: "phrase", v: "悔約", w: 5 }
+      ],
+      ans: reply("qin-blame",
+        "藺相如不慌不忙地說，兩國相交應當以誠信為本，還說我國歷代國君自恃國勢強盛，總不信守盟約。本王當時怒目圓睜，哼了一聲：「現在悔約、不守信用的是你，是趙國呀！」因為在本王看來，是他答應獻璧，卻先把璧送走。至於本王先前在章台只顧把玩、並無劃城，同學也可以用課文來評一評：到底是誰先沒有信用。",
+        ["言語", "心理"])
+    },
+    {
+      char: "qin", id: "qin-view-lin",
+      rules: [
+        { type: "phrase", v: "藺相如是怎樣", w: 9 },
+        { type: "phrase", v: "你認為藺相如", w: 9 },
+        { type: "phrase", v: "智勇雙全", w: 8 },
+        { type: "phrase", v: "膽識過人", w: 8 },
+        { type: "all", v: ["覺得", "藺相如"], w: 6 }
+      ],
+      ans: reply("qin-view-lin",
+        "本王最後無可奈何地說：他果然智勇雙全，膽識過人。先前本王只覺他大膽、會欺騙人，甚至要處置他；後來才看見，他能在侍衛捉住他時仍然鎮定說理，又能把和氏璧安全送回趙國。殺了他既得不到璧，也會損害邦交，本王只得放了他。這句「智勇雙全」，正是本王對他的評價。同學還可以用他的對白和動作，自己再作判斷。",
+        ["言語", "心理"])
+    },
+    {
+      char: "qin", id: "qin-who",
+      rules: [
+        { type: "phrase", v: "你是誰", w: 8 },
+        { type: "phrase", v: "你叫甚麼", w: 8 },
+        { type: "phrase", v: "自我介紹", w: 7 },
+        { type: "phrase", v: "你是甚麼人", w: 7 }
+      ],
+      ans: reply("qin-who",
+        "本王是秦王。趙王得到和氏璧，本王送信說願拿十五座城池交換。第一幕，本王在章台與妃嬪飲酒作樂，欣賞和氏璧；第二幕，五天後本王在大殿上等藺相如獻璧。同學可以問本王這兩幕裏做過、說過的事。",
+        ["言語"])
+    },
+    {
+      char: "qin", id: "qin-character",
+      rules: [
+        { type: "phrase", v: "你是怎樣的人", w: 7 },
+        { type: "phrase", v: "你的性格", w: 7 },
+        { type: "phrase", v: "甚麼性格", w: 6 }
+      ],
+      ans: reply("qin-character",
+        "性格還是請同學用課文來判斷。第一幕本王開懷大笑、把玩寶玉，被藺相如取回璧後便拍案大怒，接着又萬分着急、無可奈何。第二幕本王先開心地要他獻璧，隨即怒火中燒，甚至喝令處置他，最後卻又放了他，稱他智勇雙全。這些言語、行為和心情，都寫在劇本裏。本王不必替自己下結論。",
+        ["言語", "行為", "心理"])
+    },
+    {
+      char: "qin", id: "qin-wrong-smash",
+      rules: [
+        { type: "all", v: ["你", "撞"], w: 6 },
+        { type: "phrase", v: "你為甚麼要作勢", w: 8 },
+        { type: "phrase", v: "璧在人在", w: 5 }
+      ],
+      ans: reply("qin-wrong-smash",
+        "作勢把璧玉撞向柱子的，是藺相如，不是本王。他舉起璧玉，厲聲說「璧在人在，璧亡人亡」，本王反而萬分着急，怕他真的和璧玉同歸於盡。請同學把這條問題改問藺相如，或回到課文看看是誰在做這件事。",
+        ["行為", "言語"])
+    },
+    {
+      char: "qin", id: "qin-sincerity",
+      rules: [
+        { type: "phrase", v: "誠信", w: 7 },
+        { type: "phrase", v: "食言", w: 6 },
+        { type: "phrase", v: "有沒有誠意", w: 8 },
+        { type: "phrase", v: "守信用", w: 7 }
+      ],
+      ans: reply("qin-sincerity",
+        "藺相如說過，兩國相交應當以誠信為本。本王派人送信，說願拿十五座城池換和氏璧，可是在章台時，本王的確只顧和妃嬪把玩，沒有劃城。後來本王反而責怪他悔約。這些都寫在課文裏。至於本王有沒有誠意、算不算食言，請同學用對白和舞台指示自己判斷，不要只聽本王一面之詞。",
+        ["言語", "行為"])
+    }
+  ];
+
+  var OUT_SCOPE_WORDS = [
+    "廉頗", "藺相如將相", "負荊", "將相和", "澠池", "渑池", "長平", "趙括",
+    "卞和", "和氏璧是怎樣來", "和氏璧的來歷", "發現和氏璧",
+    "幾歲", "年齡", "妻子", "結婚", "喜歡吃", "最愛", "手機", "電腦遊戲",
+    "功課答案", "考試", "史記還有", "後來還做過", "當了上卿", "完璧之後"
+  ];
+
+  function normalize(s) {
+    s = String(s || "");
+    s = s.replace(/藉相如|蘭相如/g, "藺相如");
+    s = s.replace(/完壁/g, "完璧");
+    s = s.replace(/妃嬡/g, "妃嬪");
+    s = s.replace(/[\s？?！!，,。、；;：:「」『』“”"'‘’（）()\-—…]/g, "");
+    return s;
+  }
+
+  function ruleHit(norm, rule) {
+    if (rule.type === "phrase") return norm.indexOf(rule.v) !== -1;
+    if (rule.type === "all") {
+      for (var i = 0; i < rule.v.length; i++) {
+        if (norm.indexOf(rule.v[i]) === -1) return false;
+      }
+      return true;
+    }
+    if (rule.type === "any") {
+      for (var j = 0; j < rule.v.length; j++) {
+        if (norm.indexOf(rule.v[j]) !== -1) return true;
+      }
+      return false;
+    }
+    return false;
+  }
+
+  function isOutOfScope(norm, raw) {
+    var t = raw + " " + norm;
+    for (var i = 0; i < OUT_SCOPE_WORDS.length; i++) {
+      if (t.indexOf(OUT_SCOPE_WORDS[i]) !== -1) return true;
+    }
+    return false;
+  }
+
+  function isVague(norm) {
+    if (norm.length < 3) return true;
+    var onlyShort = /^(你好|哈囉|嗨|請問一下|我想問|問你|喂)$/.test(norm);
+    return onlyShort;
+  }
+
+  function answer(char, question) {
+    var raw = String(question || "").trim();
+    var norm = normalize(raw);
+    if (!raw) return { id: "empty", text: "請先輸入或點選一個問題。", evidence: [], score: 0 };
+    if (isOutOfScope(norm, raw)) {
+      return { id: "out", text: OUT_OF_SCOPE[char], evidence: [], score: 0 };
+    }
+    if (isVague(norm)) {
+      return { id: "vague", text: VAGUE[char], evidence: [], score: 0 };
+    }
+    var best = null;
+    var bestScore = 0;
+    for (var i = 0; i < INTENTS.length; i++) {
+      var it = INTENTS[i];
+      if (it.char !== char) continue;
+      if (it.exclude) {
+        var skipped = false;
+        for (var e = 0; e < it.exclude.length; e++) {
+          if (norm.indexOf(normalize(it.exclude[e])) !== -1 || raw.indexOf(it.exclude[e]) !== -1) {
+            skipped = true; break;
+          }
+        }
+        if (skipped) continue;
+      }
+      var score = 0;
+      for (var r = 0; r < it.rules.length; r++) {
+        if (ruleHit(norm, it.rules[r])) score += it.rules[r].w;
+      }
+      if (score > bestScore) {
+        bestScore = score;
+        best = it;
+      }
+    }
+    if (!best || bestScore < 4) {
+      return { id: "out", text: OUT_OF_SCOPE[char], evidence: [], score: bestScore };
+    }
+    return {
+      id: best.ans.id,
+      text: best.ans.text,
+      evidence: best.ans.evidence.slice(),
+      score: bestScore
+    };
+  }
+
+  function scanForbidden(text) {
+    var hits = [];
+    for (var i = 0; i < FORBIDDEN.length; i++) {
+      if (String(text).indexOf(FORBIDDEN[i]) !== -1) hits.push(FORBIDDEN[i]);
+    }
+    return hits;
+  }
+
+  function selfTest() {
+    var cases = [
+      { char: "lin", q: "你為甚麼要作勢把璧玉撞向柱子？", expect: "lin-smash", must: ["作勢要撞向柱子", "璧在人在", "並無換城之意"] },
+      { char: "lin", q: "你說「璧在人在，璧亡人亡」是甚麼意思？", expect: "lin-saying", must: ["厲聲", "和璧玉同歸於盡"] },
+      { char: "lin", q: "你先把和氏璧送走，算不算不守信用？", expect: "lin-trust", must: ["誰先食言", "審時度勢", "親自把和氏璧送上"] },
+      { char: "lin", q: "為甚麼不立刻把璧獻給秦王？", expect: "lin-not-give", must: ["章台", "並無換城"] },
+      { char: "lin", q: "你為甚麼要求秦王齋戒五天？", expect: "lin-fast", must: ["齋戒五天", "章台", "不合禮儀"] },
+      { char: "lin", q: "侍衛捉住你、秦王要斬你時，你心裏在想甚麼？", expect: "lin-feel", must: ["鎮定自若", "使命已經完成"] },
+      { char: "lin", q: "你為甚麼說璧上有瑕疵？", expect: "lin-flaw", must: ["退到圓柱旁", "瑕疵"] },
+      { char: "lin", q: "甚麼叫做審時度勢？", expect: "lin-assess", must: ["秦國強而趙國弱"] },
+      { char: "lin", q: "你為甚麼要效忠趙王？", expect: "lin-loyal", must: ["效忠趙王"] },
+      { char: "lin", q: "兩國相交，應當以誠信為本，你為甚麼這樣說？", expect: "lin-sincerity", must: ["以誠信為本"] },
+      { char: "lin", q: "你是誰？", expect: "lin-who", must: ["藺相如"] },
+      { char: "lin", q: "你是怎樣的人？", expect: "lin-character", must: ["課文證據"] },
+      { char: "lin", q: "你為甚麼與妃嬪把玩和氏璧，卻沒有劃城？", expect: "lin-wrong-play", must: ["是秦王，不是我"] },
+      { char: "lin", q: "你後來怎樣和廉頗和好？", expect: "out", must: ["不在我這兩段經歷裏"] },
+      { char: "lin", q: "和氏璧是卞和怎樣發現的？", expect: "out", must: ["第一幕、第二幕找不到"] },
+      { char: "lin", q: "你喜歡吃甚麼？", expect: "out", must: ["不便亂說"] },
+      { char: "qin", q: "你為甚麼與妃嬪把玩和氏璧，卻沒有劃城？", expect: "qin-play", must: ["章台", "開懷大笑", "並無換城之意"] },
+      { char: "qin", q: "你後來為甚麼又放了藺相如？", expect: "qin-release", must: ["智勇雙全", "損害兩國的邦交"] },
+      { char: "qin", q: "你為甚麼下令要斬藺相如？", expect: "qin-kill", must: ["怒火中燒", "拖下去，斬"] },
+      { char: "qin", q: "藺相如作勢要撞毀和氏璧時，你為甚麼着急？", expect: "qin-panic", must: ["萬分着急", "千萬不要衝動"] },
+      { char: "qin", q: "你為甚麼答應齋戒五天？", expect: "qin-fast", must: ["無可奈何", "就依你吧"] },
+      { char: "qin", q: "你認為藺相如是怎樣的人？", expect: "qin-view-lin", must: ["智勇雙全", "膽識過人"] },
+      { char: "qin", q: "兩國相交應當以誠信為本，你同意嗎？", expect: "qin-sincerity", must: ["只顧和妃嬪把玩"] },
+      { char: "qin", q: "你為甚麼要作勢把璧玉撞向柱子？", expect: "qin-wrong-smash", must: ["是藺相如，不是本王"] },
+      { char: "qin", q: "澠池之會你做了甚麼？", expect: "out", must: ["並沒有經歷過"] },
+      { char: "qin", q: "你是誰？", expect: "qin-who", must: ["秦王"] }
+    ];
+    var failures = [];
+    // forbidden in all canned text
+    var allText = OPENING.lin + OPENING.qin + OUT_OF_SCOPE.lin + OUT_OF_SCOPE.qin + VAGUE.lin + VAGUE.qin;
+    SUGGEST.lin.concat(SUGGEST.qin).forEach(function (s) { allText += s; });
+    INTENTS.forEach(function (it) { allText += it.ans.text; });
+    var bad = scanForbidden(allText);
+    if (bad.length) failures.push("詞庫出現錯字：" + bad.join("、"));
+    if (allText.indexOf("藺相如") === -1 || allText.indexOf("和氏璧") === -1) {
+      failures.push("詞庫缺少藺相如或和氏璧");
+    }
+    cases.forEach(function (c, idx) {
+      var r = answer(c.char, c.q);
+      if (r.id !== c.expect) {
+        failures.push("#" + (idx + 1) + "「" + c.q + "」預期 " + c.expect + "，實得 " + r.id + "（score=" + r.score + "）");
+      }
+      var miss = [];
+      (c.must || []).forEach(function (w) {
+        if (r.text.indexOf(w) === -1) miss.push(w);
+      });
+      if (miss.length) {
+        failures.push("#" + (idx + 1) + "回覆缺少：「" + miss.join("、") + "」");
+      }
+      var f = scanForbidden(r.text);
+      if (f.length) failures.push("#" + (idx + 1) + "回覆有錯字：" + f.join("、"));
+    });
+    return { ok: failures.length === 0, failures: failures, total: cases.length };
+  }
+
+  global.WanbiDialogue = {
+    SUGGEST: SUGGEST,
+    OPENING: OPENING,
+    answer: answer,
+    normalize: normalize,
+    selfTest: selfTest,
+    scanForbidden: scanForbidden,
+    NAMES: { lin: "藺相如", qin: "秦王" }
+  };
+})(typeof window !== "undefined" ? window : globalThis);
+
+
+(function () {
+  "use strict";
+  var E = globalThis.WanbiDialogue;
+  if (!E || typeof document === "undefined") return;
+
+  var state = { char: null, turns: [] };
+
+  var viewPick = document.getElementById("view-pick");
+  var viewChat = document.getElementById("view-chat");
+  var viewVerify = document.getElementById("view-verify");
+  var chips = document.getElementById("chips");
+  var log = document.getElementById("log");
+  var chatWho = document.getElementById("chat-who");
+  var qInput = document.getElementById("q-input");
+  var afterTwo = document.getElementById("after-two");
+  var helpBox = document.getElementById("help-box");
+  var verifyList = document.getElementById("verify-list");
+
+  function show(el) { el.classList.remove("hidden"); }
+  function hide(el) { el.classList.add("hidden"); }
+
+  function setCharTheme() {
+    document.body.classList.toggle("body-qin", state.char === "qin");
+    chatWho.textContent = E.NAMES[state.char];
+    chatWho.className = "who-tag " + state.char;
+  }
+
+  function renderChips() {
+    chips.innerHTML = "";
+    E.SUGGEST[state.char].forEach(function (q) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip";
+      b.textContent = q;
+      b.addEventListener("click", function () { ask(q); });
+      chips.appendChild(b);
+    });
+  }
+
+  function appendBubble(role, name, text) {
+    var div = document.createElement("div");
+    div.className = "bubble " + role;
+    var meta = document.createElement("div");
+    meta.className = "meta";
+    meta.textContent = name;
+    var txt = document.createElement("div");
+    txt.className = "txt";
+    txt.textContent = text;
+    div.appendChild(meta);
+    div.appendChild(txt);
+    log.appendChild(div);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function startChat(char) {
+    state.char = char;
+    state.turns = [];
+    log.innerHTML = "";
+    document.getElementById("group-concl").value = "";
+    setCharTheme();
+    renderChips();
+    hide(viewPick);
+    hide(viewVerify);
+    show(viewChat);
+    hide(afterTwo);
+    appendBubble(char, E.NAMES[char], E.OPENING[char]);
+    qInput.value = "";
+    qInput.focus();
+  }
+
+  function ask(question) {
+    var q = String(question || qInput.value || "").trim();
+    if (!q) {
+      qInput.focus();
+      return;
+    }
+    var res = E.answer(state.char, q);
+    state.turns.push({ q: q, a: res.text, id: res.id, evidence: res.evidence || [] });
+    appendBubble("user", "同學", q);
+    appendBubble(state.char, E.NAMES[state.char], res.text);
+    qInput.value = "";
+    if (state.turns.length >= 2) show(afterTwo);
+  }
+
+  function renderVerify() {
+    verifyList.innerHTML = "";
+    if (!state.turns.length) {
+      var p = document.createElement("p");
+      p.className = "hint strong";
+      p.textContent = "請先回到對話，至少問一題，再來檢證。";
+      verifyList.appendChild(p);
+      return;
+    }
+    state.turns.forEach(function (t, i) {
+      var box = document.createElement("div");
+      box.className = "verify-block";
+      box.innerHTML =
+        "<div class='qa'><div class='q'>第 " + (i + 1) + " 題： " + escapeHtml(t.q) + "</div>" +
+        "<div class='a'><strong>" + E.NAMES[state.char] + "的回覆：</strong><br>" + escapeHtml(t.a) + "</div></div>" +
+        "<fieldset class='choice'><legend>這段說話符合課文嗎？</legend>" +
+        "<div class='opts'>" +
+        radio(i, "fit", "符合", "ok") +
+        radio(i, "fit", "不完全符合", "part") +
+        radio(i, "fit", "不符合", "no") +
+        "</div></fieldset>" +
+        "<fieldset class='choice'><legend>相關證據屬於（可多選）：</legend>" +
+        "<div class='opts'>" +
+        check(i, "言語") + check(i, "行為") + check(i, "心理") +
+        "</div></fieldset>" +
+        "<label for='ev-" + i + "'><strong>我們找到的課文證據</strong>（請寫出對白或舞台指示）</label>" +
+        "<textarea class='note' id='ev-" + i + "' placeholder='例如：第一幕，藺相如「舉起璧玉，作勢要撞向柱子」，厲聲地說「璧在人在，璧亡人亡」。'></textarea>";
+      verifyList.appendChild(box);
+    });
+  }
+
+  function radio(i, name, label, val) {
+    var id = name + "-" + i + "-" + val;
+    return "<label for='" + id + "'><input type='radio' name='" + name + "-" + i + "' id='" + id + "' value='" + val + "'> " + label + "</label>";
+  }
+  function check(i, label) {
+    var id = "evtype-" + i + "-" + label;
+    return "<label for='" + id + "'><input type='checkbox' id='" + id + "' value='" + label + "'> " + label + "</label>";
+  }
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return ({ "&": "&", "<": "<", ">": ">", '"': """, "'": "&#39;" })[c];
+    });
+  }
+
+  document.getElementById("pick-lin").addEventListener("click", function () { startChat("lin"); });
+  document.getElementById("pick-qin").addEventListener("click", function () { startChat("qin"); });
+  document.getElementById("btn-switch").addEventListener("click", function () {
+    hide(viewChat);
+    hide(viewVerify);
+    show(viewPick);
+  });
+  document.getElementById("ask-form").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    ask();
+  });
+  qInput.addEventListener("keydown", function (ev) {
+    if (ev.key === "Enter" && !ev.shiftKey) {
+      ev.preventDefault();
+      ask();
+    }
+  });
+  document.getElementById("btn-verify").addEventListener("click", function () {
+    hide(viewChat);
+    show(viewVerify);
+    renderVerify();
+    window.scrollTo(0, 0);
+  });
+  document.getElementById("btn-back").addEventListener("click", function () {
+    hide(viewVerify);
+    show(viewChat);
+  });
+  document.getElementById("btn-home").addEventListener("click", function () {
+    state.char = null;
+    state.turns = [];
+    hide(viewChat);
+    hide(viewVerify);
+    show(viewPick);
+    document.getElementById("group-concl").value = "";
+  });
+  document.getElementById("btn-reset-chat").addEventListener("click", function () {
+    if (!state.char) return;
+    startChat(state.char);
+  });
+  document.getElementById("btn-print").addEventListener("click", function () { window.print(); });
+  document.getElementById("btn-help").addEventListener("click", function () {
+    helpBox.open = !helpBox.open;
+    document.getElementById("btn-help").setAttribute("aria-expanded", helpBox.open ? "true" : "false");
+  });
+})();
+
+  </script>
+</body>
+</html>
